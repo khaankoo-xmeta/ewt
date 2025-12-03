@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import {
   Table,
@@ -7,27 +7,27 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/components/ui/table';
-import { useCallback, useEffect, useState } from 'react';
-import { changeIsPaid, changeStatus } from '@/utils/change-status';
-import { Badge } from '@/components/ui/badge';
-import { Card } from '@/components/ui/card';
-import dayjs from 'dayjs';
+} from "@/components/ui/table";
+import { useCallback, useEffect, useState } from "react";
+import { changeIsPaid, changeStatus } from "@/utils/change-status";
+import { Badge } from "@/components/ui/badge";
+import { Card } from "@/components/ui/card";
+import dayjs from "dayjs";
 
-import { Product } from '@/types/product';
-import { STATUS } from '@/types/common';
-import { UserStatusDialog } from './user-status-dialog';
-import { BankDialog } from './bank-dialog';
+import { Product } from "@/types/product";
+import { STATUS } from "@/types/common";
+import { UserStatusDialog } from "./user-status-dialog";
+import { BankDialog } from "./bank-dialog";
 
 type Props = Readonly<{
   phoneNumber: string;
 }>;
 
 const translations = {
-  loading: 'Ачаалалж байна...',
-  totalItems: 'Нийт бараа',
-  totalAmount: 'Нийлбэр дүн',
-  invalidPhone: 'Утасны дугаар оруулна уу.',
+  loading: "Ачаалалж байна...",
+  totalItems: "Нийт бараа",
+  totalAmount: "Нийлбэр дүн",
+  invalidPhone: "Утасны дугаар оруулна уу.",
 };
 
 export function UserTable({ phoneNumber }: Props) {
@@ -49,19 +49,19 @@ export function UserTable({ phoneNumber }: Props) {
         `${
           process.env.NEXT_PUBLIC_API_URL
         }/api/products/user?phoneNumber=${encodeURIComponent(phoneNumber)}${
-          status ? `&status=${status}` : ''
+          status ? `&status=${status}` : ""
         }`,
         {
-          method: 'GET',
+          method: "GET",
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
         }
       );
       const data = await response.json();
       setUserData(Array.isArray(data) ? data : data ? [data] : []);
     } catch (error) {
-      console.error('Error fetching data:', error);
+      console.error("Error fetching data:", error);
       setError(`Failed to load data: ${error}`);
       setUserData([]);
     } finally {
@@ -101,11 +101,11 @@ export function UserTable({ phoneNumber }: Props) {
   }, [fetchData]);
 
   if (loading) {
-    return <div className='flex justify-center'>Ачаалалж байна...</div>;
+    return <div className="flex justify-center">Ачаалалж байна...</div>;
   }
 
   if (error) {
-    return <div className='text-red-500'>{error}</div>;
+    return <div className="text-red-500">{error}</div>;
   }
 
   if (!userData || userData.length === 0) {
@@ -121,13 +121,13 @@ export function UserTable({ phoneNumber }: Props) {
   ).length;
 
   return (
-    <Card className='w-full max-w-[1300px] p-6 bg-white shadow-md'>
-      <div className='flex justify-between items-center mb-4'>
+    <Card className="w-full max-w-[1300px] p-6 bg-white shadow-md">
+      <div className="flex justify-between items-center mb-4">
         <UserStatusDialog setStatus={setStatus} status={status} />
-        <BankDialog />
+        {/* <BankDialog /> */}
       </div>
-      <div className='flex justify-between flex-col sm:flex-row my-5 gap-5'>
-        <div className='flex items-center gap-5'>
+      <div className="flex justify-between flex-col sm:flex-row my-5 gap-5">
+        <div className="flex items-center gap-5">
           <p>
             {translations.totalItems}: {sumNumber}
           </p>
@@ -136,16 +136,16 @@ export function UserTable({ phoneNumber }: Props) {
           </p>
         </div>
       </div>
-      <Table aria-label='User products table'>
+      <Table aria-label="User products table">
         <TableHeader>
           <TableRow>
             <TableHead>№</TableHead>
-            <TableHead className='w-[100px]'>Трак код</TableHead>
+            <TableHead className="w-[100px]">Трак код</TableHead>
             <TableHead>Төлөв</TableHead>
             <TableHead>Утасны дугаар</TableHead>
             <TableHead>Дүн</TableHead>
             <TableHead>Төлбөр</TableHead>
-            <TableHead className='text-right'>Огноо</TableHead>
+            <TableHead className="text-right">Огноо</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -156,7 +156,7 @@ export function UserTable({ phoneNumber }: Props) {
                 {data.trackingCode ? (
                   <>
                     <TableCell>{index + 1}</TableCell>
-                    <TableCell className='font-medium'>
+                    <TableCell className="font-medium">
                       {data.trackingCode}
                     </TableCell>
                     <TableCell>
@@ -164,15 +164,15 @@ export function UserTable({ phoneNumber }: Props) {
                     </TableCell>
                     <TableCell>{data.phoneNumber}</TableCell>
                     <TableCell>
-                      {data.price ? `${data.price} ₮` : 'Дүн оруулаагүй байна'}
+                      {data.price ? `${data.price} ₮` : "Дүн оруулаагүй байна"}
                     </TableCell>
                     <TableCell>{changeIsPaid(data.isPaid)}</TableCell>
-                    <TableCell className='text-right'>
-                      {dayjs(data.updatedAt).format('DD-MM-YYYY')}
+                    <TableCell className="text-right">
+                      {dayjs(data.updatedAt).format("DD-MM-YYYY")}
                     </TableCell>
                   </>
                 ) : (
-                  <TableCell colSpan={8} className='text-center'>
+                  <TableCell colSpan={8} className="text-center">
                     No tracking code available
                   </TableCell>
                 )}
