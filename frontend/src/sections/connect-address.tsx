@@ -36,8 +36,8 @@ export const ConnectAddress = () => {
       <h1 className="text-2xl font-normal text-center text-gray-600">
         Хаяг холбох заавар
       </h1>
-      <div className="max-w-[850px] flex items-start gap-24 max-md:flex-col mt-10">
-        <div className="flex flex-col items-start max-w-[400px] gap-10">
+      <div className="max-w-[1050px] flex items-start gap-24 flex-col mt-10">
+        <div className="flex flex-col items-start max-w-[1000px] gap-10">
           <div className="flex items-center gap-3">
             <h1 className="font-medium text-md">Утасны дугаар:</h1>
             {/* <h1 className="font-medium text-md">155 4792 6009</h1> */}
@@ -49,12 +49,16 @@ export const ConnectAddress = () => {
               <Copy />
             </button>
           </div>
-          <div className="flex items-start gap-3">
+          <div className="flex items-start flex-col gap-3">
             <h1 className="font-medium text-md">Хаяг:</h1>
             <h1 className="font-medium text-md">
               Ewt cargo 中国电话：15647994899
-              内蒙古锡林郭勒盟二连浩特市环宇商贸城8-11（Ewt kargo + Нэр+ Утасны
-              дугаар
+            </h1>
+            <h1 className="font-medium text-md">
+              内蒙古锡林郭勒盟二连浩特市环宇商贸城8-11
+            </h1>
+            <h1 className="font-medium text-md">
+              Ewt kargo + Нэр+ Утасны дугаар
             </h1>
             <button
               className="copy-btn cursor-pointer"
