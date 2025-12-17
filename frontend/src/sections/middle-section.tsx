@@ -3,7 +3,7 @@ import { AlertTriangle } from "lucide-react";
 
 export const MiddleSection = () => {
   return (
-    <div className="container py-20 px-5">
+    <div className="container py-20 px-5 bg-blue-300">
       <h1 className="text-2xl font-normal text-center text-gray-600">
         Захиалсан бараагаа хүлээн авах хамгийн зөв сонголт
       </h1>
