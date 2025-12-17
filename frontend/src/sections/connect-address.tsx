@@ -40,7 +40,6 @@ export const ConnectAddress = () => {
         <div className="flex flex-col items-start max-w-[1000px] gap-10">
           <div className="flex items-center gap-3">
             <h1 className="font-medium text-md">Утасны дугаар:</h1>
-            {/* <h1 className="font-medium text-md">155 4792 6009</h1> */}
             <button
               className="copy-btn cursor-pointer"
               data-clipboard-text="15547926009"
